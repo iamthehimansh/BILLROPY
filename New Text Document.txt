@@ -1,0 +1,3 @@
+z=["himansh","chirau","baby","zero"]
+for i in z:
+	print(i)

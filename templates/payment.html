@@ -1,0 +1,177 @@
+{% extends "Main.html" %}
+{% block title %}BILLROPY{% endblock %}
+                {% block upbar %} 
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Payment <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Invoice </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Offer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact </a>
+                </li>
+                {% endblock %}
+{% block body %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Your Detail</h1><center>
+                <label for="cname" class="lead text-muted mb-0">
+                    Clint Name :-  {{cname}}
+                </label>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="cno" class="lead text-muted mb-0">
+                    Clint MOBILE No. :-   {{cno}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <label for="cname" class="lead text-muted mb-0">
+                    Clint Addr :-  {{address}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <label for="cno" class="lead text-muted mb-0">
+                    Invoice No. :-   {{invoice}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label></center>
+        <!-- <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ens emble des morceaux de texte pour réaliser un livre spécimen de polices de texte...</p> -->
+
+    </div>
+</section>
+    <p>
+    </p>
+    <p>
+    </p>
+        <strong> PAYABLE AMOUNT IS ₹{{totalprise*(tax+100)/100 |int}}.<br></strong>
+
+</center>
+    Your Invoice is here 
+    <br>
+    <iframe src="/getbill_pdf/{{cname}}/{{cno}}/{{address}}/{{product_name}}/{{totalprise}}/{{qty}}/{{invoice}}/{{tax}}"  width="100%" height="100%">
+        
+</iframe>
+    <style> 
+        #footer { 
+            position: fixed; 
+            padding: 10px 10px 0px 10px; 
+            bottom: 0; 
+            width: 100%; 
+            /* Height of the footer*/  
+            height: 70px; 
+            /*background: grey; */
+        } 
+    </style>
+    <center>
+<div id="footer">
+    </form>
+    <div id="footer">
+    <button onclick="location.href='/getpaid/{{invoice}}'" style="
+    /*background: dodgerblue;*/
+    background: #1a73e8;
+    border: 0;
+    border-radius: 4px;
+    font-size: 20px;
+"><font color="white"> Pay with Debit Card / Cradit card / Netbanking / UPI / Scan to PaY / Paytm  </font></button></div> </center>
+<center>
+    <table>
+        <tr>
+            <th>Pay With Paytm QR Code</th>
+            <th>Pay With Google Pay QR Code</th>
+            <th>Pay With Amazon Pay QR Code</th>
+            <th>Pay With PhonePay QR Code</th>
+        </tr><tr>
+            <td><img src="/paytmqrcode" height="700" width="350">
+                <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+                    <input type="text" name="transid" required>
+                    <input type="hidden" name="paidto" value="PaYtm Qr">
+                    <br> <label > Paid Amount :- </label>
+                    <input type="text" name="paidamount" required>
+                    <input type="hidden" name="invoice" value="{{invoice_no}}">
+                    <input type="submit" value="PayMent Done">
+                </form></td>
+            <td><img src="/googlepayqrcode" height="700" width="350">
+                <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+                    <input type="text" name="transid" required>
+                    <input type="hidden" name="paidto" value="Google Pay Qr">
+                    <br> <label > Paid Amount :- </label>
+                    <input type="text" name="paidamount" required>
+                    <input type="hidden" name="invoice" value="{{invoice_no}}">
+                    <input type="submit" value="PayMent Done">
+                </form></td>
+            <td><img src="/amazonpayqrcode" height="700" width="350">
+                <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+                    <input type="text" name="transid" required>
+                    <input type="hidden" name="paidto" value="Amazon Pay Qr">
+                    <br> <label > Paid Amount :- </label>
+                    <input type="text" name="paidamount" required>
+                    <input type="hidden" name="invoice" value="{{invoice_no}}">
+                    <input type="submit" value="PayMent Done">
+                </form></td>
+            <td><img src="/phonepayqrcode" height="700" width="350">
+                <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+                    <input type="text" name="transid" required>
+                    <input type="hidden" name="paidto" value="PhonePay Qr">
+                    <br> <label > Paid Amount :- </label>
+                    <input type="text" name="paidamount" required>
+                    <input type="hidden" name="invoice" value="{{invoice_no}}">
+                    <input type="submit" value="PayMent Done">
+                </form></td>
+        </tr>
+
+    </table>
+    <!--<br> Pay With Paytm Qr Code<br>
+    <img src="/paytmqrcode" height="700" width="400">
+    <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+        <input type="text" name="transid" required>
+        <input type="hidden" name="paidto" value="PaYtm Qr">
+        <br> <label > Paid Amount :- </label>
+        <input type="text" name="paidamount" required>
+        <input type="hidden" name="invoice" value="{{invoice_no}}">
+        <input type="submit" value="PayMent Done">
+    </form>
+    <br> Pay With Google Pay Qr Code<br>
+    <img src="/googlepayqrcode" height="700" width="400">
+    <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+        <input type="text" name="transid" required>
+        <input type="hidden" name="paidto" value="Google Pay Qr">
+        <br> <label > Paid Amount :- </label>
+        <input type="text" name="paidamount" required>
+        <input type="hidden" name="invoice" value="{{invoice_no}}">
+        <input type="submit" value="PayMent Done">
+    </form>
+    <br> Pay With Amazon Pay Qr Code<br>
+    <img src="/amazonpayqrcode" height="700" width="400">
+    <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+        <input type="text" name="transid" required>
+        <input type="hidden" name="paidto" value="Amazon Pay Qr">
+        <br> <label > Paid Amount :- </label>
+        <input type="text" name="paidamount" required>
+        <input type="hidden" name="invoice" value="{{invoice_no}}">
+        <input type="submit" value="PayMent Done">
+    </form>
+    <br> Pay With PhonePay Qr Code<br>
+    <img src="/phonepayqrcode" height="700" width="400">
+    <form method="POST" action="/veryfypayany/" > Transaction Id :- 
+        <input type="text" name="transid" required>
+        <input type="hidden" name="paidto" value="PhonePay Qr">
+        <br> <label > Paid Amount :- </label>
+        <input type="text" name="paidamount" required>
+        <input type="hidden" name="invoice" value="{{invoice_no}}">
+        <input type="submit" value="PayMent Done">
+    </form> -->
+    <!-- <form name="document1" id="document1" class="document1" action="/getpaid/{{invoice_no}}">
+        <input type="button" onclick="document1.submit()" value="Pay with Payt" name="paytm">
+    </form> -->
+    
+</center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

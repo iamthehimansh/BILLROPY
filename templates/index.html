@@ -1,0 +1,142 @@
+{% extends "Main.html" %}
+{% block title %}BILLROPY{% endblock %}
+                {% block upbar %} 
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Payment </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Invoice </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Offer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact </a>
+                </li>
+                {% endblock %}
+{% block body %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Your Detail</h1>
+        <form method="POST" action="/submitproduct_payment"><center>
+                <label for="cname" class="lead text-muted mb-0">
+                    Clint Name :-  
+                </label>
+                <input type="text" name="cname"  required="required" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="cno" class="lead text-muted mb-0">
+                    Clint MOBILE No. :-   
+                </label>
+                <input type="tel" name="cno"  required="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="cname" class="lead text-muted mb-0">
+                    Clint Addr :-  
+                </label>
+                <input type="text" name="addr"></center>
+        <!-- <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ens emble des morceaux de texte pour réaliser un livre spécimen de polices de texte...</p> -->
+
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/product">Product</a></li>
+                    <!-- <li class="breadcrumb-item active" aria-current="page">Sub-category</li> -->
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-3">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                <ul class="list-group category_block">
+                    <li class="list-group-item"><a href="#">Hair</a></li>
+                    <li class="list-group-item"><a href="#">Facial</a></li>
+                    <li class="list-group-item"><a href="#">Manicure</a></li>
+                    <li class="list-group-item"><a href="#">Padicure</a></li>
+                    <li class="list-group-item"><a href="#">Child</a></li>
+                </ul>
+            </div>
+
+	{% if offer == True %}
+	{% for i in offerlist %}
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase">Hot Offer</div>
+                <div class="card-body">
+                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff"><!-- Image Url -->
+                    <h5 class="card-title">{{i[Offer_title]}}</h5>
+                    <p class="card-text">{{i[Offer_Discripition]}} faltu hai <br> faltu</p>
+                    <p class="bloc_left_price"><strike style="color: red;">{{i[old_prise]}} 1000</strike>Rs 800{{i[new_Prise]}} </p>
+                </div>
+            </div>
+        </div>
+	{% endfor %}
+	{% endif %}
+
+
+        <div class="col">
+            <div class="row">
+
+                {% for key in avilableproduct.keys() %}
+		{% set i=avilableproduct[key] %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img class="card-img-top" src='{{ i["product_img"] }}' alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="product.html" title="View Product">{{ i["name"] }}</a></h4>
+                            <p class="card-text">{{ i["product_des"] }}</p>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="btn btn-danger btn-block">Rs {{ i["prise"] }}</p>
+                                </div>
+                                <div class="col">
+                                    
+                                    <label for="{{ key }}" {# i['product_id'] #} class="btn btn-success btn-block">
+                                        <input type="checkbox" name="product[]" value="{{ key }}" id="{{ key }}">  Select To add In list</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+            <style> 
+        #fixedoder { 
+            position: fixed; 
+            padding: 10px 10px 0px 10px; 
+            bottom: 0; 
+            width: 100%; 
+            /* Height of the footer*/  
+            height: 60px; 
+            /*background: grey; */
+        } 
+    </style>
+    <div id="fixedoder">
+        <center><font color="white">
+            <input type="submit" value="Submit The Oder"  style="
+    /*background: dodgerblue;*/
+    background: #1a73e8;
+    border: 0;
+    border-radius: 4px;
+    font-size: 20px;
+    color: white;
+">
+        </div></font>
+    </center>
+{% endblock %}

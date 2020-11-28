@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paytm merchant payment page</title>
+</head>
+<body>
+<h1>Redirecting you to the merchant....</h1>
+<h1>Please do not refresh your page....</h1>
+<form action="https://securegw-stage.paytm.in/theia/processTransaction" method="post" name="paytm">
+
+    <input type="hidden" name='MID' value="{{param_dict['MID']}}">
+    <input type="hidden" name='ORDER_ID' value="{{param_dict['ORDER_ID']}}">
+    <input type="hidden" name='TXN_AMOUNT' value="{{param_dict['TXN_AMOUNT']}}">
+    <input type="hidden" name='CUST_ID' value="{{param_dict['CUST_ID']}}">
+    <input type="hidden" name='INDUSTRY_TYPE_ID' value="{{param_dict['INDUSTRY_TYPE_ID']}}">
+    <input type="hidden" name='WEBSITE' value="{{param_dict['WEBSITE']}}">
+    <input type="hidden" name='CHANNEL_ID' value="{{param_dict['CHANNEL_ID']}}">
+    <input type="hidden" name='CALLBACK_URL' value="{{param_dict['CALLBACK_URL']}}">
+    <input type="hidden" name='CHECKSUMHASH' value="{{param_dict['CHECKSUMHASH']}}">
+
+    
+    
+    
+    
+    
+    
+    
+</form>
+</body>
+<script>
+document.paytm.submit()
+</script>
+</html>

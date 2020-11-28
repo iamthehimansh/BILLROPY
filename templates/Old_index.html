@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <style type="css/text">
+        hr{
+        padding: 0%;
+        margin: 0px;
+        border: 0px;
+        }
+        input{
+            font-size: 25px;
+        }
+        body{
+            margin: 0px;
+        }
+        </style>
+        <title>
+            BILLROPY HOME
+        </title>
+    </head>
+
+<!--Main Navigation-->
+
+
+
+
+
+    <body>
+        <font size="6" >
+            <form method="POST" action="/submitproduct_payment"><center>
+                <label for="cname">
+                    Clint Name :-  
+                </label>
+                <input type="text" name="cname"  required="required" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="cno">
+                    Clint MOBILE No. :-   
+                </label>
+                <input type="tel" name="cno"  required="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="cname">
+                    Clint Addr :-  
+                </label>
+                <input type="text" name="addr">
+            </center></font>
+                <hr  color="black">
+                <div id="product>">
+                {% for i in avilableproduct %}<section>
+                <input type="checkbox" name="product[]" value="{{ i['value'] }}">&nbsp;&nbsp;{{ i["product_name"] }}</section>
+                {% endfor %}
+                <br>
+                sorry no more product !!!
+            </div><!-- Tax :- --> 
+            <input type="hidden" name="tax" value="18"><br>
+            <style> 
+        #footer { 
+            position: fixed; 
+            padding: 10px 10px 0px 10px; 
+            bottom: 0; 
+            width: 100%; 
+            /* Height of the footer*/  
+            height: 40px; 
+            /*background: grey; */
+        } 
+    </style>
+    <div id="footer">
+        <center><font color="white">
+            <input type="submit" value="Submit The Oder"  style="
+    /*background: dodgerblue;*/
+    background: #1a73e8;
+    border: 0;
+    border-radius: 4px;
+    font-size: 20px;
+    color: white;
+">
+        </div></font>
+    </center>
+            </form>
+        
+    </body>
+</html>

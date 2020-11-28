@@ -1,0 +1,43 @@
+{% extends "Main.html" %}
+{% block title %}BILLROPY{% endblock %}
+                {% block upbar %} 
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Payment <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/invoice">Invoice </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Offer">Offer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact </a>
+                </li>
+                {% endblock %}
+{% block body %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Payment status regarding your order Id {{response["ORDERID"]}}</h1>
+        
+        <!-- <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ens emble des morceaux de texte pour réaliser un livre spécimen de polices de texte...</p> -->
+        <div class="lead text-muted mb-0">
+        {% if response["RESPCODE"] == '01' %}
+        <h5>ORDER SUCCESS</h5>
+        {% else %}
+        <h5>ORDER FAILURE</h5>
+        {% endif%}</div>
+
+
+
+    </div>
+</section>
+<!-- response in curly bracet -->
+
+
+        
+
+
+{% endblock %}
