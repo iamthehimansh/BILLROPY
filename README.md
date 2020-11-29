@@ -2,7 +2,10 @@
 This Flask app is created to Serve web by robo to Clint
 # New Features!
 Home Page
-[![home](https://i.ibb.co/7J1gHVw/home.png)](https://ibb.co/rGwbgMC)
+[![home](https://i.ibb.co/7J1gHVw/home.png)](https://fb.com/iamthehimansh)
+  - Face deactition
+  - Path finding
+  - distance Megerment
   - you can change tax with web
   - you can pay bill in the web
   - you can see Invoice in this
